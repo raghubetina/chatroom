@@ -1,0 +1,79 @@
+<% was_validated = team.errors.any? %>
+
+<% form_html_options = { novalidate: true, class: "mb-3" } %>
+
+<%= form_for(team, html: form_html_options) do |f| %>
+  <div class="form-group">
+    <% name_class = "form-control" %>
+    <% name_was_invalid = team.errors.include?(:name) %>
+
+    <% if was_validated %>
+      <% if name_was_invalid %>
+        <% name_class << " is-invalid" %>
+      <% else %>
+        <% name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :name %>
+
+    <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
+    <% if name_was_invalid %>
+      <% team.errors.full_messages_for(:name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <% rooms_count_class = "form-control" %>
+    <% rooms_count_was_invalid = team.errors.include?(:rooms_count) %>
+
+    <% if was_validated %>
+      <% if rooms_count_was_invalid %>
+        <% rooms_count_class << " is-invalid" %>
+      <% else %>
+        <% rooms_count_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :rooms_count %>
+
+    <%= f.number_field :rooms_count, class: rooms_count_class, placeholder: "Enter rooms count" %>
+    <% if rooms_count_was_invalid %>
+      <% team.errors.full_messages_for(:rooms_count).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <% memberships_count_class = "form-control" %>
+    <% memberships_count_was_invalid = team.errors.include?(:memberships_count) %>
+
+    <% if was_validated %>
+      <% if memberships_count_was_invalid %>
+        <% memberships_count_class << " is-invalid" %>
+      <% else %>
+        <% memberships_count_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :memberships_count %>
+
+    <%= f.number_field :memberships_count, class: memberships_count_class, placeholder: "Enter memberships count" %>
+    <% if memberships_count_was_invalid %>
+      <% team.errors.full_messages_for(:memberships_count).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
