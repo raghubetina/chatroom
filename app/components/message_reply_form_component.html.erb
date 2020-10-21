@@ -1,0 +1,34 @@
+<% was_validated = @message.errors.any? %>
+
+<% form_html_options = { novalidate: true, class: "collapse mb-3", id: "reply_to_#{dom_id(@message.parent)}" } %>
+
+<%= form_for(@message, html: form_html_options) do |f| %>
+  <div class="form-group">
+    <% body_class = "form-control" %>
+    <% body_was_invalid = @message.errors.include?(:body) %>
+
+    <% if was_validated %>
+      <% if body_was_invalid %>
+        <% body_class << " is-invalid" %>
+      <% else %>
+        <% body_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :body, class: 'sr-only' %>
+
+    <%= f.text_field :body, class: body_class, placeholder: "Enter body" %>
+    <% if body_was_invalid %>
+      <% @message.errors.full_messages_for(:body).each do |error_message| %>
+        <div class="invalid-feedback d-flex">
+          <%= error_message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= f.hidden_field :room_id %>
+  <%= f.hidden_field :parent_id %>
+
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
