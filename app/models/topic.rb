@@ -21,4 +21,5 @@
 class Topic < ApplicationRecord
   belongs_to :room
   has_many :messages, dependent: :destroy
+  validates :name, presence: true
 end

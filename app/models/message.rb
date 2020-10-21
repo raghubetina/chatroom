@@ -24,4 +24,6 @@
 class Message < ApplicationRecord
   belongs_to :topic
   belongs_to :user, required: false
+
+  validates :body, presence: true
 end

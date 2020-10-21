@@ -260,6 +260,7 @@ DEPENDENCIES
   annotate
   bootsnap (>= 1.4.2)
   byebug
+  devise
   draft_generators!
   jbuilder (~> 2.7)
   listen (~> 3.2)

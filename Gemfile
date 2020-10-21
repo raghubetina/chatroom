@@ -8,6 +8,7 @@ ruby '2.7.1'
 gem 'rails', github: 'rails/rails', branch: 'master'
 
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'devise'
 gem 'jbuilder', '~> 2.7'
 gem 'motion', '~> 0.4.3'
 gem 'pg', '>= 0.18', '< 2.0'
