@@ -1,0 +1,127 @@
+<% was_validated = room.errors.any? %>
+
+<% form_html_options = { novalidate: true, class: "mb-3" } %>
+
+<%= form_for(room, html: form_html_options) do |f| %>
+  <div class="form-group">
+    <% name_class = "form-control" %>
+    <% name_was_invalid = room.errors.include?(:name) %>
+
+    <% if was_validated %>
+      <% if name_was_invalid %>
+        <% name_class << " is-invalid" %>
+      <% else %>
+        <% name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :name %>
+
+    <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
+    <% if name_was_invalid %>
+      <% room.errors.full_messages_for(:name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-check">
+    <% anyone_can_join_class = "form-check-input" %>
+    <% anyone_can_join_was_invalid = room.errors.include?(:anyone_can_join) %>
+
+    <% if was_validated %>
+      <% if anyone_can_join_was_invalid %>
+        <% anyone_can_join_class << " is-invalid" %>
+      <% else %>
+        <% anyone_can_join_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :anyone_can_join, class: "form-check-label" do %>
+      <%= f.check_box :anyone_can_join, class: anyone_can_join_class %> Anyone can join
+    <% end %>
+    <% if anyone_can_join_was_invalid %>
+      <% room.errors.full_messages_for(:anyone_can_join).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <% creator_class = "form-control" %>
+    <% creator_was_invalid = room.errors.include?(:creator) %>
+
+    <% if was_validated %>
+      <% if creator_was_invalid %>
+        <% creator_class << " is-invalid" %>
+      <% else %>
+        <% creator_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :creator %>
+
+    <%= f.text_field :creator, class: creator_class, placeholder: "Enter creator" %>
+    <% if creator_was_invalid %>
+      <% room.errors.full_messages_for(:creator).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <% team_class = "form-control" %>
+    <% team_was_invalid = room.errors.include?(:team) %>
+
+    <% if was_validated %>
+      <% if team_was_invalid %>
+        <% team_class << " is-invalid" %>
+      <% else %>
+        <% team_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :team %>
+
+    <%= f.text_field :team, class: team_class, placeholder: "Enter team" %>
+    <% if team_was_invalid %>
+      <% room.errors.full_messages_for(:team).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-check">
+    <% hidden_class = "form-check-input" %>
+    <% hidden_was_invalid = room.errors.include?(:hidden) %>
+
+    <% if was_validated %>
+      <% if hidden_was_invalid %>
+        <% hidden_class << " is-invalid" %>
+      <% else %>
+        <% hidden_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :hidden, class: "form-check-label" do %>
+      <%= f.check_box :hidden, class: hidden_class %> Hidden
+    <% end %>
+    <% if hidden_was_invalid %>
+      <% room.errors.full_messages_for(:hidden).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>

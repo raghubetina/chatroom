@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_183107) do
+ActiveRecord::Schema.define(version: 2020_10_21_183124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.boolean "anyone_can_join"
+    t.bigint "creator_id", null: false
+    t.bigint "team_id", null: false
+    t.boolean "hidden"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_rooms_on_creator_id"
+    t.index ["team_id"], name: "index_rooms_on_team_id"
+  end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
@@ -30,4 +42,6 @@ ActiveRecord::Schema.define(version: 2020_10_21_183107) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "rooms", "teams"
+  add_foreign_key "rooms", "users", column: "creator_id"
 end
