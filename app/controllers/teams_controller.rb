@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
 
   # GET /teams
   def index
-    @teams = Team.all
+    @teams = current_user.teams
   end
 
   # GET /teams/1
@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
 
   # POST /teams
   def create
-    @team = Team.new(team_params)
+    @team = Team.new(team_params.merge(creator: current_user))
 
     if @team.save
       redirect_to @team, notice: 'Team was successfully created.'
