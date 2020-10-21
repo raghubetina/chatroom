@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/firstdraft/draft_generators.git
+  revision: b749884a069c7f06472da628f604c246655d6495
+  branch: winter-2020
+  specs:
+    draft_generators (0.0.3)
+      devise
+      indefinite_article
+
+GIT
   remote: https://github.com/rails/rails.git
   revision: 7cc2b57b8dd052ff5986c663865174b247c0ea8c
   branch: master
@@ -108,6 +117,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.1)
+    bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
@@ -115,12 +125,20 @@ GEM
     byebug (11.1.3)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
+    devise (4.7.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     erubi (1.9.0)
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    indefinite_article (0.2.4)
+      activesupport
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
     listen (3.2.1)
@@ -147,6 +165,7 @@ GEM
     nio4r (2.5.4)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
+    orm_adapter (0.5.0)
     parallel (1.19.2)
     parser (2.7.2.0)
       ast (~> 2.4.1)
@@ -169,6 +188,9 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (1.8.2)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rexml (3.2.4)
     rubocop (1.0.0)
       parallel (~> 1.10)
@@ -221,6 +243,8 @@ GEM
     unicode-display_width (1.7.0)
     view_component (2.20.0)
       activesupport (>= 5.0.0, < 7.0)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -232,6 +256,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
+  draft_generators!
   jbuilder (~> 2.7)
   listen (~> 3.2)
   motion (~> 0.4.3)

@@ -22,6 +22,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'draft_generators', github: 'firstdraft/draft_generators', branch: 'winter-2020'
   gem 'listen', '~> 3.2'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
