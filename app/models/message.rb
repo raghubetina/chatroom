@@ -28,4 +28,11 @@ class Message < ApplicationRecord
   belongs_to :user, required: false
 
   validates :body, presence: true
+
+  before_create :add_topic
+
+  def add_topic
+    
+  end
+  
 end

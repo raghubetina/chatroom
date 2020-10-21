@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_191834) do
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.boolean "anyone_can_join", default: true
-    t.bigint "creator_id", null: false
+    t.bigint "creator_id"
     t.bigint "team_id", null: false
     t.boolean "hidden", default: false
     t.datetime "created_at", precision: 6, null: false
@@ -51,10 +51,12 @@ ActiveRecord::Schema.define(version: 2020_10_21_191834) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
+    t.bigint "creator_id"
     t.integer "rooms_count", default: 0
     t.integer "memberships_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_teams_on_creator_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -85,5 +87,6 @@ ActiveRecord::Schema.define(version: 2020_10_21_191834) do
   add_foreign_key "messages", "users"
   add_foreign_key "rooms", "teams"
   add_foreign_key "rooms", "users", column: "creator_id"
+  add_foreign_key "teams", "users", column: "creator_id"
   add_foreign_key "topics", "rooms"
 end

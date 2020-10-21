@@ -10,7 +10,7 @@
 #  name            :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  creator_id      :bigint           not null
+#  creator_id      :bigint
 #  team_id         :bigint           not null
 #
 # Indexes
