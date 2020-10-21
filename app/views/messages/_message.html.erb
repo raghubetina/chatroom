@@ -1,18 +1,27 @@
-<li>
-  <% if message.root? %>
-    <strong><%= message.topic.name %></strong>
-  <% end %>
-  <div>
+<div class="media mb-3">
+  <img width="64" src="https://robohash.org/<%= message.user.username %>" class="mr-3" alt="<%= message.user.username %>">
+
+  <div class="media-body">
+    <% if message.root? %>
+      <h5 class="mt-0">
+        <%= message.topic.name %>
+      </h5>
+    <% end %>
+    
     <%= simple_format message.body %>
 
-    <small class="text-muted">
-      <%= time_ago_in_words(message.updated_at) %> ago
-    </small>
-  </div>
+    <div class="d-flex justify-content-between mb-3">
+      <small class="text-muted">
+        <%= time_ago_in_words(message.updated_at) %> ago
+      </small>
 
-  <%= render "messages/reply_form", message: Message.new(parent: message) %>
+      <small>
+        <a data-toggle="collapse" href="#reply_to_<%= dom_id(message) %>" role="button" aria-expanded="false" aria-controls="collapseExample">Reply</a>
+      </small>
+    </div>
 
-  <ul>
+    <%= render "messages/reply_form", message: Message.new(parent: message) %>
+
     <%= render message.children %>
-  </ul>
-</li>
+  </div>
+</div>

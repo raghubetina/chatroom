@@ -23,15 +23,11 @@
     <div class="card">
       <h1 class="card-header h4 d-flex align-items-center justify-content-between">
         Messages
-
-        <%= link_to new_message_path, class: "btn btn-sm btn-outline-secondary" do %>
-          <i class="fas fa-plus fa-fw"></i>
-        <% end %>
       </h1>
 
-      <ul>
+      <div class="card-body">
         <%= render @room.root_messages %>
-      </ul>
+      </div>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <% was_validated = message.errors.any? %>
 
-<% form_html_options = { novalidate: true, class: "mb-3" } %>
+<% form_html_options = { novalidate: true, class: "collapse mb-3", id: "reply_to_#{dom_id(message.parent)}" } %>
 
 <%= form_for(message, html: form_html_options) do |f| %>
   <div class="form-group">
@@ -15,9 +15,9 @@
       <% end %>
     <% end %>
 
-    <%= f.label :body %>
+    <%= f.label :body, class: 'sr-only' %>
 
-    <%= f.text_area :body, class: body_class, placeholder: "Enter body" %>
+    <%= f.text_field :body, class: body_class, placeholder: "Enter body" %>
     <% if body_was_invalid %>
       <% message.errors.full_messages_for(:body).each do |message| %>
         <div class="invalid-feedback d-flex">
