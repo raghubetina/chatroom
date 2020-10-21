@@ -63,9 +63,9 @@
       <% end %>
     <% end %>
 
-    <%= f.label :creator %>
+    <%= f.label :creator_id %>
 
-    <%= f.text_field :creator, class: creator_class, placeholder: "Enter creator" %>
+    <%= f.text_field :creator_id, class: creator_class, placeholder: "Enter creator" %>
     <% if creator_was_invalid %>
       <% room.errors.full_messages_for(:creator).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -87,9 +87,9 @@
       <% end %>
     <% end %>
 
-    <%= f.label :team %>
+    <%= f.label :team_id %>
 
-    <%= f.text_field :team, class: team_class, placeholder: "Enter team" %>
+    <%= f.text_field :team_id, class: team_class, placeholder: "Enter team" %>
     <% if team_was_invalid %>
       <% room.errors.full_messages_for(:team).each do |message| %>
         <div class="invalid-feedback d-flex">
