@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_room, only: %i[show edit update destroy]
 
   # GET /rooms
   def index
@@ -7,8 +9,7 @@ class RoomsController < ApplicationController
   end
 
   # GET /rooms/1
-  def show
-  end
+  def show; end
 
   # GET /rooms/new
   def new
@@ -16,8 +17,7 @@ class RoomsController < ApplicationController
   end
 
   # GET /rooms/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /rooms
   def create
@@ -46,13 +46,14 @@ class RoomsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_room
-      @room = Room.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def room_params
-      params.require(:room).permit(:name, :anyone_can_join, :creator_id, :team_id, :hidden)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_room
+    @room = Room.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def room_params
+    params.require(:room).permit(:name, :anyone_can_join, :creator_id, :team_id, :hidden)
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Membership < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :team, counter_cache: true

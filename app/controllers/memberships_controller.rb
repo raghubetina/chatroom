@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class MembershipsController < ApplicationController
-  before_action :set_membership, only: [:show, :edit, :update, :destroy]
+  before_action :set_membership, only: %i[show edit update destroy]
 
   # GET /memberships
   def index
@@ -7,8 +9,7 @@ class MembershipsController < ApplicationController
   end
 
   # GET /memberships/1
-  def show
-  end
+  def show; end
 
   # GET /memberships/new
   def new
@@ -16,8 +17,7 @@ class MembershipsController < ApplicationController
   end
 
   # GET /memberships/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /memberships
   def create
@@ -46,13 +46,14 @@ class MembershipsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_membership
-      @membership = Membership.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def membership_params
-      params.require(:membership).permit(:user_id, :team_id, :role)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_membership
+    @membership = Membership.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def membership_params
+    params.require(:membership).permit(:user_id, :team_id, :role)
+  end
 end
