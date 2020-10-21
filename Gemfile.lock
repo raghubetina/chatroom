@@ -129,6 +129,7 @@ GEM
     loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
+    lz4-ruby (0.3.3)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
@@ -138,6 +139,10 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.2)
+    motion (0.4.3)
+      lz4-ruby (>= 0.3.3)
+      nokogiri
+      rails (>= 5.1)
     msgpack (1.3.3)
     nio4r (2.5.4)
     nokogiri (1.10.10)
@@ -214,6 +219,8 @@ GEM
     tzinfo (2.0.2)
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.7.0)
+    view_component (2.20.0)
+      activesupport (>= 5.0.0, < 7.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -227,6 +234,7 @@ DEPENDENCIES
   byebug
   jbuilder (~> 2.7)
   listen (~> 3.2)
+  motion (~> 0.4.3)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails!
@@ -237,6 +245,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
+  view_component
   web-console!
   webpacker!
 

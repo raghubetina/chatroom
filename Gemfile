@@ -7,14 +7,15 @@ ruby '2.7.1'
 
 gem 'rails', github: 'rails/rails', branch: 'master'
 
+gem 'bootsnap', '>= 1.4.2', require: false
+gem 'jbuilder', '~> 2.7'
+gem 'motion', '~> 0.4.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
-gem 'webpacker', github: 'rails/webpacker'
-
-gem 'bootsnap', '>= 1.4.2', require: false
-gem 'jbuilder', '~> 2.7'
 gem 'turbolinks', '~> 5'
+gem 'view_component', require: 'view_component/engine'
+gem 'webpacker', github: 'rails/webpacker'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
