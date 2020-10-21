@@ -6,6 +6,7 @@
       </h2>
 
       <div class="card-body">
+        <%= @message.errors.full_messages %>
         <%= render "form", message: @message %>
 
         <%= link_to :back, class: "btn btn-block btn-outline-secondary" do %>

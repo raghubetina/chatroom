@@ -34,11 +34,21 @@ class Message < ApplicationRecord
 
   validates :body, presence: true
 
-  before_validation :set_topic, on: :create, if: Proc.new { |message| message.is_root? && message.topic_name.present? }
+  before_validation :set_room, on: :create, if: Proc.new { |message| message.room_id.blank? && !message.is_root? }
+  before_validation :set_topic, on: :create, if: Proc.new { |message| message.topic_id.blank? && !message.is_root? }
+  before_validation :create_topic, on: :create, if: Proc.new { |message| message.is_root? && message.topic_name.present? }
 
   has_ancestry
-  
+
+  def set_room
+    self.room_id = parent.room_id
+  end
+
   def set_topic
+    self.topic_id = parent.topic_id
+  end
+
+  def create_topic
     self.topic = room.topics.create(name: topic_name)
   end
   
