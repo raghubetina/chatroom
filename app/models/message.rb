@@ -40,6 +40,12 @@ class Message < ApplicationRecord
 
   has_ancestry
 
+  after_commit :broadcast_created, on: :create
+
+  def broadcast_created
+    ActionCable.server.broadcast("messages:created", id)
+  end
+
   def set_room
     self.room_id = parent.room_id
   end
