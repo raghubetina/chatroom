@@ -9,30 +9,37 @@
 #  body       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  room_id    :bigint           not null
 #  topic_id   :bigint           not null
 #  user_id    :bigint           not null
 #
 # Indexes
 #
 #  index_messages_on_ancestry  (ancestry)
+#  index_messages_on_room_id   (room_id)
 #  index_messages_on_topic_id  (topic_id)
 #  index_messages_on_user_id   (user_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (room_id => rooms.id)
 #  fk_rails_...  (topic_id => topics.id)
 #  fk_rails_...  (user_id => users.id)
 #
 class Message < ApplicationRecord
+  attr_accessor :topic_name
+  belongs_to :room
   belongs_to :topic
   belongs_to :user, required: false
 
   validates :body, presence: true
 
-  before_create :add_topic
+  before_validation :set_topic, on: :create, if: Proc.new { |message| message.is_root? && message.topic_name.present? }
 
-  def add_topic
-    
+  has_ancestry
+  
+  def set_topic
+    self.topic = room.topics.create(name: topic_name)
   end
   
 end

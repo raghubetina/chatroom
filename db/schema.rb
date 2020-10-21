@@ -28,11 +28,13 @@ ActiveRecord::Schema.define(version: 2020_10_21_191834) do
   create_table "messages", force: :cascade do |t|
     t.bigint "topic_id", null: false
     t.text "body"
+    t.bigint "room_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "ancestry"
     t.index ["ancestry"], name: "index_messages_on_ancestry"
+    t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["topic_id"], name: "index_messages_on_topic_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
@@ -83,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_191834) do
 
   add_foreign_key "memberships", "teams"
   add_foreign_key "memberships", "users"
+  add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "topics"
   add_foreign_key "messages", "users"
   add_foreign_key "rooms", "teams"

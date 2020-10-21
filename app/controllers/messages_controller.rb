@@ -21,7 +21,7 @@ class MessagesController < ApplicationController
 
   # POST /messages
   def create
-    @message = Message.new(message_params)
+    @message = Message.new(message_params.merge(user: current_user))
 
     if @message.save
       redirect_to @message, notice: 'Message was successfully created.'
@@ -54,6 +54,6 @@ class MessagesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def message_params
-    params.require(:message).permit(:topic_id, :body, :user_id)
+    params.require(:message).permit(:room_id, :topic_name, :body, :user_id)
   end
 end
