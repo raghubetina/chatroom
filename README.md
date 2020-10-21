@@ -1,24 +1,12 @@
-# README
+# Chatroom
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+rails generate draft:scaffold user username:string memberships_count:integer
+rails generate draft:scaffold team name:string rooms_count:integer memberships_count:integer
+rails generate draft:scaffold room name:string anyone_can_join:boolean creator:references team:references hidden:boolean
+rails generate draft:scaffold topic room:references name:string
+rails generate draft:scaffold message topic:references body:text user:references
+rails generate draft:scaffold membership user:references team:references
+```
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
