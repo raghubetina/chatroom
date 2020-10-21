@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_183356) do
   create_table "memberships", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "team_id", null: false
-    t.string "role"
+    t.integer "role", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_memberships_on_team_id"
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 2020_10_21_183356) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    t.boolean "anyone_can_join"
+    t.boolean "anyone_can_join", default: true
     t.bigint "creator_id", null: false
     t.bigint "team_id", null: false
-    t.boolean "hidden"
+    t.boolean "hidden", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["creator_id"], name: "index_rooms_on_creator_id"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2020_10_21_183356) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.integer "rooms_count"
-    t.integer "memberships_count"
+    t.integer "rooms_count", default: 0
+    t.integer "memberships_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_183356) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.integer "memberships_count"
+    t.integer "memberships_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
