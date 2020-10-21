@@ -1,4 +1,4 @@
-<ul class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+<li>
   <div>
     <%= simple_format message.body %>
 
@@ -8,4 +8,8 @@
   </div>
 
   <%= render "messages/reply_form", message: Message.new(parent: message) %>
-</ul>
+
+  <ul>
+    <%= render message.children %>
+  </ul>
+</li>
