@@ -1,25 +1,19 @@
 <div class="card mb-3">
-  <h2 class="card-header h4">
-    Room #<%= room.id %>
+  <h2 class="card-header h4 d-flex justify-content-between align-items-baseline">
+    <%= room.name %>
+
+    <small>
+      <%= room.team.name %>
+    </small>
   </h2>
 
   <div class="card-body">
     <dl class="mb-1">
-      <dt>Name</dt>
-      <dd><%= room.name %></dd>
-
       <dt>Anyone can join</dt>
       <dd><%= room.anyone_can_join %></dd>
 
-      <dt>Creator</dt>
-      <dd><%= room.creator %></dd>
-
-      <dt>Team</dt>
-      <dd><%= room.team %></dd>
-
       <dt>Hidden</dt>
       <dd><%= room.hidden %></dd>
-
     </dl>
 
     <div class="row">

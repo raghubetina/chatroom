@@ -2,7 +2,7 @@
 
 <% form_html_options = { novalidate: true, class: "collapse mb-3", id: "reply_to_#{dom_id(@message.parent)}" } %>
 
-<%= form_for(@message, html: form_html_options) do |f| %>
+<%= form_with(model: @message, html: form_html_options) do |f| %>
   <div class="form-group">
     <% body_class = "form-control" %>
     <% body_was_invalid = @message.errors.include?(:body) %>

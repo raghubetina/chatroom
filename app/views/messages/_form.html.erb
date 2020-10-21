@@ -15,9 +15,9 @@
       <% end %>
     <% end %>
 
-    <%= f.label :topic_name %>
+    <%= f.label :topic_name, "Topic" %>
 
-    <%= f.text_field :topic_name, class: topic_name_class, placeholder: "Enter topic" %>
+    <%= f.text_field :topic_name, class: topic_name_class, placeholder: "The subject of your message, in a couple of words..." %>
     <% if topic_name_was_invalid %>
       <% message.errors.full_messages_for(:topic_id).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -39,9 +39,9 @@
       <% end %>
     <% end %>
 
-    <%= f.label :body %>
+    <%= f.label :body, "Message" %>
 
-    <%= f.text_area :body, class: body_class, placeholder: "Enter body" %>
+    <%= f.text_area :body, class: body_class, placeholder: "Your message..." %>
     <% if body_was_invalid %>
       <% message.errors.full_messages_for(:body).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -53,5 +53,5 @@
 
   <%= f.hidden_field :room_id %>
 
-  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+  <%= f.button "Send", class: "btn btn-outline-secondary btn-block" %>
 <% end %>

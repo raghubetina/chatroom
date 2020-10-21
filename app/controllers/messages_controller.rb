@@ -24,7 +24,14 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params.merge(user: current_user))
 
     if @message.save
-      redirect_to @message.room, notice: 'Message was successfully created.'
+      respond_to do |format|
+        format.html do
+          redirect_to @message.room, notice: 'Message was successfully created.'
+        end
+        format.js do
+          head :ok
+        end
+      end
     else
       render :new
     end

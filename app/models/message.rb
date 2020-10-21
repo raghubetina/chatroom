@@ -43,7 +43,7 @@ class Message < ApplicationRecord
   after_commit :broadcast_created, on: :create
 
   def broadcast_created
-    ActionCable.server.broadcast("messages:created", id)
+    ActionCable.server.broadcast("messages:created", room_id)
   end
 
   def set_room
