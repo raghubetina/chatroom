@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root "teams#index"
+  root 'teams#index'
   devise_for :users
   resources :memberships
   resources :messages

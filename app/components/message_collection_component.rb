@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class MessageCollectionComponent < ApplicationComponent
   include Motion::Component
 
-  stream_from "messages:created", :handle_created
+  stream_from 'messages:created', :handle_created
 
   def initialize(messages:)
     @messages = messages
@@ -10,5 +12,4 @@ class MessageCollectionComponent < ApplicationComponent
   def handle_created(room_id)
     @messages = Room.find(room_id).root_messages
   end
-  
 end

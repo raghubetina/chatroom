@@ -28,22 +28,23 @@
 #
 class Message < ApplicationRecord
   attr_accessor :topic_name
+
   belongs_to :room
   belongs_to :topic
   belongs_to :user, required: false
 
   validates :body, presence: true
 
-  before_validation :set_room, on: :create, if: Proc.new { |message| message.room_id.blank? && !message.is_root? }
-  before_validation :set_topic, on: :create, if: Proc.new { |message| message.topic_id.blank? && !message.is_root? }
-  before_validation :create_topic, on: :create, if: Proc.new { |message| message.is_root? && message.topic_name.present? }
+  before_validation :set_room, on: :create, if: proc { |message| message.room_id.blank? && !message.is_root? }
+  before_validation :set_topic, on: :create, if: proc { |message| message.topic_id.blank? && !message.is_root? }
+  before_validation :create_topic, on: :create, if: proc { |message| message.is_root? && message.topic_name.present? }
 
   has_ancestry
 
   after_commit :broadcast_created, on: :create
 
   def broadcast_created
-    ActionCable.server.broadcast("messages:created", room_id)
+    ActionCable.server.broadcast('messages:created', room_id)
   end
 
   def set_room
@@ -57,5 +58,4 @@ class Message < ApplicationRecord
   def create_topic
     self.topic = room.topics.create(name: topic_name)
   end
-  
 end

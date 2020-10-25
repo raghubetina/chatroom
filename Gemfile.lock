@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 89312ee89c618d9be4b0527da91048e80813c81c
+  branch: master
+  specs:
+    faker (2.14.0)
+      i18n (>= 1.6, < 2)
+
+GIT
   remote: https://github.com/firstdraft/draft_generators.git
   revision: b749884a069c7f06472da628f604c246655d6495
   branch: winter-2020
@@ -265,6 +273,7 @@ DEPENDENCIES
   byebug
   devise
   draft_generators!
+  faker!
   jbuilder (~> 2.7)
   listen (~> 3.2)
   motion (~> 0.4.3)
