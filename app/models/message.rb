@@ -11,7 +11,7 @@
 #  updated_at :datetime         not null
 #  room_id    :bigint           not null
 #  topic_id   :bigint           not null
-#  user_id    :bigint           not null
+#  user_id    :bigint
 #
 # Indexes
 #
