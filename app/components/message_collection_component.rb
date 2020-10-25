@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 class MessageCollectionComponent < ApplicationComponent
-  include Motion::Component
-
-  stream_from 'messages:created', :handle_created
-
   def initialize(messages:)
     @messages = messages
   end
